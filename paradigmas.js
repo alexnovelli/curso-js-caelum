@@ -7,5 +7,7 @@ let company = new String("Caelum")
 console.log(company, typeof company, company.constructor)
 
 console.dir(String.prototype)
+console.dir(Number.prototype)
+console.dir(Boolean.prototype)
 
 console.log(empresa.toUpperCase(), company.toUpperCase())
