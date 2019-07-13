@@ -1,6 +1,6 @@
 console.log("=== IIFE - MODULE PATTERN ===");
 
-// expressão de função
+// expressão de função - inicia com "(" e pode ser anônima
 const app = (function () {
     console.log("start app");
     var ga = {};
