@@ -1,20 +1,26 @@
-if (aceitouSalvarGlobal === true) {
-    let paginaInicial = localStorage.getItem('paginaInicial');
+import aceitouSalvar from "/scripts/storage/aceitouSalvar.js"
+import paginaInicial, {
+    setPaginaInicial
+} from "/scripts/storage/paginaInicial.js"
+
+if (aceitouSalvar === true) {
+    let paginaInicialPadrao = paginaInicial;
     
-    if (!paginaInicial) {
-        paginaInicial = prompt('Escolha uma página inicial');
+    if (!paginaInicialPadrao) {
+        paginaInicialPadrao = prompt('Escolha uma página inicial');
     }
     
-    if (paginaInicial) {
+    if (paginaInicialPadrao) {
         if (
-            paginaInicial.substring(0,7) !== 'http://' &&
-            paginaInicial.substring(0,8) !== 'https://'
+            paginaInicialPadrao.substring(0,7) !== 'http://' &&
+            paginaInicialPadrao.substring(0,8) !== 'https://'
         ) {
-            paginaInicial = 'http://' + paginaInicial;
+            paginaInicialPadrao = 'http://' + paginaInicialPadrao;
         }
-        $janelaPrincipal.src = paginaInicial;
-        $inputEndereco.value = paginaInicial;
-    
-        localStorage.setItem('paginaInicial', paginaInicial);
+
+        $janelaPrincipal.src = paginaInicialPadrao;
+        $inputEndereco.value = paginaInicialPadrao;
+
+        setPaginaInicial(paginaInicialPadrao);
     }
 }
