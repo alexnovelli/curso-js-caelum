@@ -7,10 +7,10 @@ $inputPermitiuSalvar.checked = storage.aceitouSalvar;
 $botaoSalvar.onclick = salvar
 
 function salvar() {
-    const setAceitouOuNao = 
-    $inputPermitiuSalvar.checked === true
-    ? storage.setSimAceitouSalvar
-    : storage.setNaoAceitouSalvar
+    const setAceitouOuNao =
+        $inputPermitiuSalvar.checked === true
+            ? storage.setSimAceitouSalvar
+            : storage.setNaoAceitouSalvar
 
     setAceitouOuNao()
 
@@ -19,3 +19,26 @@ function salvar() {
 
     storage.setPaginaInicial(enderecoCompleto)
 }
+
+$botaoLimpaTudo.addEventListener("click", function () {
+    const chavesPermanentes = [
+        "aceitouSalvar",
+        "aceitouTermos"
+    ]
+
+    const listaChavesLocalStorage = Object.keys(localStorage)
+    for (let chave of listaChavesLocalStorage) {
+        const isChavePermanente = chavesPermanentes.includes(chave)
+
+        if (!isChavePermanente) {
+            localStorage.removeItem(chave)
+        }
+    }
+
+    const listaChavesSessionStorage = Object.keys(sessionStorage)
+    for (let chave of listaChavesSessionStorage) {
+        sessionStorage.removeItem(chave)
+    }
+
+    window.location.reload()
+})

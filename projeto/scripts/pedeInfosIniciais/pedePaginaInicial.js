@@ -16,9 +16,6 @@ if (storageAceitouSalvar === true) {
     if (paginaInicialPadrao) {
         const enderecoCompleto = formataEndereco(paginaInicialPadrao)
 
-        $janelaPrincipal.src = enderecoCompleto;
-        $inputEndereco.value = enderecoCompleto;
-
         setPaginaInicial(enderecoCompleto);
     }
 }

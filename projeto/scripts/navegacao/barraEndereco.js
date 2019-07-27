@@ -1,6 +1,10 @@
-$inputEndereco.onfocus = exibeEnderecoCompleto
-$inputEndereco.onblur = exibeEnderecoResumido
-$janelaPrincipal.onload = exibeEnderecoResumido
+import { carregar } from "/scripts/navegacao/carregar.js"
+import { formataEndereco } from "/scripts/endereco/formataEndereco.js"
+
+$inputEndereco.addEventListener("focus", exibeEnderecoCompleto)
+
+$inputEndereco.addEventListener("blur", exibeEnderecoResumido)
+$janelaPrincipal.addEventListener("load", exibeEnderecoResumido)
 
 function exibeEnderecoCompleto(){
     $inputEndereco.value = $janelaPrincipal.contentWindow.location.href
@@ -12,3 +16,11 @@ function exibeEnderecoResumido() {
 
     $inputEndereco.value = enderecoResumido
 }
+
+$inputEndereco.addEventListener("keyup", function(evento){
+    const apertouEnter = evento.key === "Enter"
+    if (apertouEnter) {
+        const enderecoCompleto = formataEndereco($inputEndereco.value)
+        carregar(enderecoCompleto)
+    }
+})

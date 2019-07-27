@@ -6,7 +6,6 @@ export function adiciona(endereco) {
         listaSites.splice(posicao + 1)
         listaSites.push(endereco)
         posicao++
-
         sessionStorage.setItem("historico", JSON.stringify(listaSites))
         sessionStorage.setItem("posicaoHistorico", posicao)
     }
