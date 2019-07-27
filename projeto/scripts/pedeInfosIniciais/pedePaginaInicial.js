@@ -1,9 +1,12 @@
-import aceitouSalvar from "/scripts/storage/aceitouSalvar.js"
-import paginaInicial, {
+import { aceitouSalvar as storageAceitouSalvar } from "/scripts/storage/aceitouSalvar.js"
+import {
+    paginaInicial,
     setPaginaInicial
 } from "/scripts/storage/paginaInicial.js"
 
-if (aceitouSalvar === true) {
+import { formataEndereco } from "/scripts/endereco/formataEndereco.js"
+
+if (storageAceitouSalvar === true) {
     let paginaInicialPadrao = paginaInicial;
     
     if (!paginaInicialPadrao) {
@@ -11,16 +14,11 @@ if (aceitouSalvar === true) {
     }
     
     if (paginaInicialPadrao) {
-        if (
-            paginaInicialPadrao.substring(0,7) !== 'http://' &&
-            paginaInicialPadrao.substring(0,8) !== 'https://'
-        ) {
-            paginaInicialPadrao = 'http://' + paginaInicialPadrao;
-        }
+        const enderecoCompleto = formataEndereco(paginaInicialPadrao)
 
-        $janelaPrincipal.src = paginaInicialPadrao;
-        $inputEndereco.value = paginaInicialPadrao;
+        $janelaPrincipal.src = enderecoCompleto;
+        $inputEndereco.value = enderecoCompleto;
 
-        setPaginaInicial(paginaInicialPadrao);
+        setPaginaInicial(enderecoCompleto);
     }
 }

@@ -1,0 +1,9 @@
+{
+    "CompilerOptions": {
+        "baseUrl": ".",
+        "module": "esnext",
+        "paths": {
+            "/*": ["./*"]
+        }
+    }
+}

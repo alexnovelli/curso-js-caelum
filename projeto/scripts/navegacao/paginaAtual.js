@@ -1,0 +1,1 @@
+import * as storagePaginaInicial from "/scripts/storage/paginaInicial.js"
