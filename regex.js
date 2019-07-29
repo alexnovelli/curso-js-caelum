@@ -19,3 +19,20 @@ console.log(
 console.log(
     "match = " + cepUsuario.match(/^\d{5}\-?\d{3}$/)
 );
+
+// REFERÊNCIA
+
+// ^ = inicio da linha
+// $ ao final = fim da linha
+// [inicio - fim] = lista permitida
+// [^inicio - fim] = lista negada
+// {min, max} = quantificador
+// \ seguido de valor = escape/literal
+// \s = espaço
+// . = qualquer coisa
+// ? ao final = opcional
+// \d = apenas digitos
+// \w = alfanumerico
+// + = repetidor
+// () = agrupador
+// \D = não digito
