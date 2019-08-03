@@ -1,5 +1,7 @@
 console.log("=== REGEX ===");
 
+console.log("https://regex101.com");
+
 // ^[0-9]{5}\-?[0-9]{3}$ ou ^\d{5}\-?\d{3}$ - Regex do CEP
 
 // ^[A-z\d]{1,}\@\w+\.\w{2,}(\.\w{2,3})? - Regex email
@@ -19,3 +21,27 @@ console.log(
 console.log(
     "match = " + cepUsuario.match(/^\d{5}\-?\d{3}$/)
 );
+
+// REFERÊNCIA
+/* 
+
+^ = inicio da linha
+$ ao final = fim da linha
+[inicio - fim] = lista permitida
+[^inicio - fim] = lista negada
+{min, max} = quantificador
+\ seguido de valor = escape/literal
+\s = espaço
+. = qualquer coisa
+? ao final = opcional
+\d = apenas digitos
+\w = alfanumerico
++ = repetidor
+() = agrupador
+\D = não digito
+
+/g - global: não retorna na primeira ocorrencia
+/i - case insensitive
+/m - multiline
+
+*/
