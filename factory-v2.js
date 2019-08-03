@@ -1,3 +1,5 @@
+console.log("=== FACTORY PATTERN v2 ===");
+
 function Conta(numero) {
     this.numero = numero || 0;
     console.log("==>", this, this instanceof Conta);
