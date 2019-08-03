@@ -1,23 +1,38 @@
-import * as storage from "/scripts/storage/storage.js"
-import { formataEndereco } from "/scripts/endereco/formataEndereco.js"
+import * as storagePaginaInicial from "/scripts/storage/storage.js"
+import * as storageAceitouSalvar from "scripts/storage/aceitouSalvar.js"
+import { Endereco } from "/scripts/endereco/Endereco.js"
+import { CakeEnderecoInvalidoError } from "/scripts/erros/CakeEnderecoInvalidoErrorClasse.js"
 
-$inputPaginaInicial.value = storage.paginaInicial;
-$inputPermitiuSalvar.checked = storage.aceitouSalvar;
+$inputPaginaInicial.value = storagePaginaInicial.paginaInicial;
+$inputPermitiuSalvar.checked = storagePaginaInicial.aceitouSalvar;
 
 $botaoSalvar.onclick = salvar
 
 function salvar() {
-    const setAceitouOuNao =
+    const funcaoEscolhida =
         $inputPermitiuSalvar.checked === true
-            ? storage.setSimAceitouSalvar
-            : storage.setNaoAceitouSalvar
+            ? storageAceitouSalvar.setAceitou
+            : storageAceitouSalvar.setNaoAceitou
 
-    setAceitouOuNao()
+    funcaoEscolhida()
 
-    const enderecoCompleto = formataEndereco($inputPaginaInicial.value)
-    $inputPaginaInicial.value = enderecoCompleto
+    try {
+        const enderecoCompleto = new Endereco($inputPaginaInicial.value)
 
-    storage.setPaginaInicial(enderecoCompleto)
+        $inputPaginaInicial.value = enderecoCompleto.toString()
+        storagePaginaInicial.setPaginaInicial(enderecoCompleto)
+    } catch (error) {
+        if (error instanceof CakeEnderecoInvalidoError) {
+            console.dir(error)
+            console.log('É CakeEnderecoInvalidoError', error instanceof CakeEnderecoInvalidoError)
+            console.log('É erro', error instanceof Error) $inputPaginaInicial.value = ''
+            console.warn(error.toString())
+            alert(error.message)
+        } else {
+            throw error
+        }
+    }
+
 }
 
 $botaoLimpaTudo.addEventListener("click", function () {
