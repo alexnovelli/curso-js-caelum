@@ -2,7 +2,9 @@ console.log("=== EVENTS ===");
 
 let page = document.querySelector("body");
 
-page.addEventListener("click", function(e){
-    console.log(arguments, e);
+window.addEventListener("mouseout", function(e){
     page.classList.add("red-theme");
+});
+window.addEventListener("mouseover", function(e){
+    page.classList.remove("red-theme");
 });
